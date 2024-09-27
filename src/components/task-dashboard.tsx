@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Plus, Home, CheckCircle, Undo2, Trash2, Play, Pause, Edit2, Moon, Sun, Clock, RotateCcw } from "lucide-react"
+import { Plus, CheckCircle, Undo2, Trash2, Play, Pause, Edit2, Clock, RotateCcw } from "lucide-react"
 import ReactConfetti from 'react-confetti'
 import {
   DropdownMenu,
@@ -21,22 +21,6 @@ type Task = {
   timerRunning: boolean
   elapsedTime: number
   totalDuration: number
-}
-
-const Logo = () => {
-  return (
-    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="40" height="40" rx="8" fill="url(#gradient)" />
-      <path d="M20 10L24.5 18H15.5L20 10Z" fill="white" />
-      <circle cx="20" cy="25" r="5" fill="white" />
-      <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FF4500" />
-          <stop offset="1" stopColor="#FF8C00" />
-        </linearGradient>
-      </defs>
-    </svg>
-  )
 }
 
 const IconContainer = ({ children, className = "", noBackground = false }: { children: React.ReactNode; className?: string; noBackground?: boolean }) => (
@@ -242,24 +226,6 @@ export function TaskDashboardComponent() {
           }}
         />
       )}
-      {/* Navigation */}
-      <header className="border-b border-gray-200 dark:border-gray-800 bg-background text-foreground">
-        <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Logo />
-            <span className="text-xl font-bold">Trakr</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
-              <IconContainer>
-                {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </IconContainer>
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
       <div className="flex-1 p-8 bg-background text-foreground overflow-auto">
         <div className="container mx-auto">
           <header className="flex justify-between items-center mb-8">
@@ -348,9 +314,9 @@ export function TaskDashboardComponent() {
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex items-center">
                   <IconContainer className="mr-2">
-                    <Home className="h-4 w-4 text-blue-500" />
+                    <CheckCircle className="h-4 w-4 text-blue-500" />
                   </IconContainer>
-                  Total Tasks
+                  All Tasks
                 </CardTitle>
               </CardHeader>
               <CardContent>
