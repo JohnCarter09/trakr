@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/ThemeToggle"
+import { ClerkProvider } from '@clerk/nextjs'
+// import { Button } from "@/components/ui/button"
+// import { ThemeToggle } from "@/components/ThemeToggle"
+// import { ReactNode } from 'react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,39 +38,20 @@ const Logo = () => (
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    <html lang="en">
+      <body>
+        <ClerkProvider
+          signInFallbackRedirectUrl="https://trakr.xyz/"
+        // or
+        // forceRedirectUrl="/dashboard"
         >
-          <header className="border-b border-gray-200 dark:border-gray-800 bg-background text-foreground">
-            <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-              <div className="flex items-center space-x-2">
-                <Logo />
-                <span className="text-xl font-bold">Trakr</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <ThemeToggle />
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <Button variant="outline" size="sm">
-                      Sign In
-                    </Button>
-                  </SignInButton>
-                </SignedOut>
-                <SignedIn>
-                  <UserButton afterSignOutUrl="/" />
-                </SignedIn>
-              </div>
-            </div>
-          </header>
-          <main>{children}</main>
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+          {children}
+        </ClerkProvider>
+      </body>
+    </html>
+  )
 }
